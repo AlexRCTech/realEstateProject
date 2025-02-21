@@ -1,0 +1,22 @@
+
+
+.list-group-item{
+  padding: 1em;
+}
+
+.list-group-item:hover {
+  background: #f8f9fa;
+}
+
+.list-group-item.active {
+  background: #007bff;
+  color: white;
+}
+.label-project{
+  font-weight: 900 !important;
+}
+
+.scrollable-list {
+  max-height: 400px;
+  overflow-y: auto;
+}

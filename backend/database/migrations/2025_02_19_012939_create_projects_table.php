@@ -14,8 +14,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('location');
-            $table->decimal('price', 10, 2);
+            $table->bigInteger('price');
             $table->string('type');
+            $table->decimal('lat', 10, 6);
+            $table->decimal('lng', 10, 6);
             $table->timestamps();
         });
     }

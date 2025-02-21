@@ -1,0 +1,10 @@
+
+
+.banner {
+  background-image: url('../../../assets/images/inmobiliaria.jpg');
+  background-size: cover;
+  padding: 150px 0;
+  height: 30vw;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
