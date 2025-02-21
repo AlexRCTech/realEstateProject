@@ -1,24 +1,29 @@
-version: "3.8"
-
 services:
   app:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     container_name: laravel_app
-    restart: always
+    restart: unless-stopped
     working_dir: /var/www
     volumes:
-      - .:/var/www
+      - ./backend:/var/www
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - app_network
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./backend/.env
+    command: >
+      sh -c "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"
 
   db:
     image: mysql:8.0
     container_name: mysql_db
-    restart: always
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: propital_db
@@ -30,16 +35,22 @@ services:
       - app_network
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 3
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: angular_frontend
+    restart: unless-stopped
     ports:
       - "4200:4200"
     volumes:
       - ./frontend:/app
+      - /app/node_modules
     command: ["npm", "start"]
     networks:
       - app_network

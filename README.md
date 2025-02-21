@@ -1,2 +1,8 @@
-# realEstateProject
-Un cliente desea desarrollar un sistema de visualización de proyectos inmobiliarios en un mapa interactivo. El objetivo del sistema es permitir a los usuarios explorar proyectos inmobiliarios en diferentes ubicaciones y obtener información detallada sobre ellos.
+# Sistema de Visualización de Proyectos Inmobiliarios
+
+## Instalación y ejecución con Docker
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/tu-usuario/tu-repositorio.git
+cd tu-repositorio
